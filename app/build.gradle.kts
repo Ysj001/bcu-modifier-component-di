@@ -7,7 +7,6 @@ plugins {
 bytecodeUtil {
     loggerLevel = 0
     modifiers = arrayOf(
-        Class.forName("com.ysj.lib.bcu.modifier.aspect.AspectModifier"),
         Class.forName("com.ysj.lib.bcu.modifier.component.di.ComponentDIModifier"),
     )
     notNeed = { entryName ->
@@ -21,11 +20,11 @@ val isReleaseMode = true
 ext["component.di.checkImpl"] = isReleaseMode
 
 android {
-    namespace = "com.ysj.demo"
+    namespace = "com.ysj.demo.component"
     compileSdk = 33
 
     defaultConfig {
-        applicationId = "com.ysj.demo"
+        applicationId = "com.ysj.demo.component"
         minSdk = 21
         targetSdk = 33
         versionCode = 1
@@ -75,7 +74,6 @@ dependencies {
     implementation(fileTree(mapOf("dir" to "libs", "include" to listOf("*.jar"))))
 //    implementation("com.squareup.okhttp3:okhttp:4.9.2")
 
-    implementation(project(":lib_modifier_aspect:aspect-api"))
     implementation(project(":lib_modifier_component_di:component-di-api"))
 
     runtimeOnly(project(":demo1"))
