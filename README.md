@@ -56,9 +56,9 @@
 
 建议直接查看 demo 工程，具体如下：
 
-- [使用 @Component 标记组件对外接口](../demo1/demo1-api/src/main/java/com/example/module/demo1/api/Demo1Component.kt)
+- [使用 @Component 标记组件对外接口](demo1/demo1-api/src/main/java/com/example/module/demo1/api/Demo1Component.kt)
 
-- [使用 @ComponentImpl 标记组件接口的唯一实现类](../demo1/src/main/java/com/example/module/demo1/Demo1ComponentImpl.kt)
+- [使用 @ComponentImpl 标记组件接口的唯一实现类](demo1/src/main/java/com/example/module/demo1/Demo1ComponentImpl.kt)
 
-- [使用 @ComponentInject 标记需要注入实例的 field](../app/src/main/java/com/ysj/demo/component/MainActivity.kt)
+- [使用 @ComponentInject 标记需要注入实例的 field](app/src/main/java/com/ysj/demo/component/MainActivity.kt)
 
