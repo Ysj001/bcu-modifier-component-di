@@ -4,7 +4,7 @@ import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.module.demo1.api.Demo1Component
-import com.ysj.demo.databinding.ActivityComponentDiBinding
+import com.ysj.demo.component.databinding.ActivityMainBinding
 import com.ysj.lib.bcu.modifier.component.di.api.ComponentInject
 import com.example.module.demo1.api.demo1.launch.Contract as Demo1LaunchContract
 
@@ -21,7 +21,7 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        val vb = ActivityComponentDiBinding.inflate(layoutInflater)
+        val vb = ActivityMainBinding.inflate(layoutInflater)
         setContentView(vb.root)
         var num = 0
         val demo1Launcher = registerForActivityResult(demo1Component.launchDemo1Contract()) {
