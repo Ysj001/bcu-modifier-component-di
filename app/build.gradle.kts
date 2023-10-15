@@ -5,13 +5,13 @@ plugins {
 }
 
 bytecodeUtil {
-    loggerLevel = 0
+    loggerLevel = 1
     modifiers = arrayOf(
-        Class.forName("com.ysj.lib.bcu.modifier.component.di.ComponentDIModifier"),
+        com.ysj.lib.bcu.modifier.component.di.ComponentDIModifier::class.java,
     )
     notNeed = { entryName ->
-        entryName.startsWith("com/ysj/")
-            || entryName.startsWith("com/example/")
+        !entryName.startsWith("com/ysj/")
+            || !entryName.startsWith("com/example/")
     }
 }
 

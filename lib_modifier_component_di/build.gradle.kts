@@ -12,8 +12,9 @@ java {
 }
 
 dependencies {
+    implementation(gradleApi())
     implementation(project("component-di-api"))
-    implementation(project(":lib_bcu_plugin:plugin-api"))
+    implementation(properties["bcu.plugin.api"] as String)
 }
 
 mavenPublish()

@@ -1,4 +1,4 @@
-rootProject.name = "BytecodeUtil"
+rootProject.name = "ModifierComponentDI"
 
 // component di modifier
 include(":lib_modifier_component_di")
@@ -10,7 +10,11 @@ private val hasPlugin = File(rootDir, "gradle.properties")
     .getProperty("bcu.groupId")
     .replace(".", File.separator)
     .let { File(File(rootDir, "repos"), it) }
-    .run { isDirectory && !list().isNullOrEmpty() }
+    .takeIf { it.isDirectory }
+    ?.list()
+    ?.filter { it == "modifier-component-di" || it == "modifier-component-di-api"}
+    .isNullOrEmpty()
+    .not()
 
 if (hasPlugin) {
     // Demo

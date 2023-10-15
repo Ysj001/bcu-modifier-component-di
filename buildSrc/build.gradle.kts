@@ -15,7 +15,6 @@ repositories {
 dependencies {
     implementation(gradleKotlinDsl())
     implementation("com.android.tools.build:gradle-api:8.1.1")
-    implementation("io.github.ysj001.bcu:plugin:2.0.1")
     val properties = org.jetbrains.kotlin
         .konan.properties
         .loadProperties(File(rootDir, "../gradle.properties").absolutePath)
@@ -24,8 +23,13 @@ dependencies {
     val hasPlugin = groupId
         .replace(".", File.separator)
         .let { File(reposDir, it) }
-        .run { isDirectory && !list().isNullOrEmpty() }
+        .takeIf { it.isDirectory }
+        ?.list()
+        ?.filter { it == "modifier-component-di" || it == "modifier-component-di-api"}
+        .isNullOrEmpty()
+        .not()
     if (hasPlugin) {
         implementation("$groupId:modifier-component-di:$componentDIVersion")
     }
+    implementation(properties["bcu.plugin"] as String)
 }
