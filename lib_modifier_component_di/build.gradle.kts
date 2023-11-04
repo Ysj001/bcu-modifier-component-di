@@ -15,6 +15,7 @@ dependencies {
     implementation(gradleApi())
     implementation(project("component-di-api"))
     implementation(properties["bcu.plugin.api"] as String)
+    compileOnly("com.android.tools.build:gradle-api:$ANDROID_GRADLE_VERSION")
 }
 
 mavenPublish()

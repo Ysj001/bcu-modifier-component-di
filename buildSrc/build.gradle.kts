@@ -7,6 +7,7 @@ private val reposDir = File(rootDir, "../repos")
 repositories {
     maven { url = reposDir.toURI() }
     maven { setUrl("https://maven.aliyun.com/nexus/content/groups/public/") }
+    maven { setUrl("https://jitpack.io") }
     google()
     gradlePluginPortal()
     mavenCentral()

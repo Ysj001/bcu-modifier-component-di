@@ -1,5 +1,6 @@
 package com.ysj.lib.bcu.modifier.component.di
 
+import com.android.build.api.variant.Variant
 import com.ysj.lib.bcu.modifier.component.di.api.Component
 import com.ysj.lib.bcu.modifier.component.di.api.ComponentImpl
 import com.ysj.lib.bcu.modifier.component.di.api.ComponentInject
@@ -58,8 +59,8 @@ class ComponentDIModifier(
 
     private var checkImpl = true
 
-    override fun initialize(project: Project) {
-        super.initialize(project)
+    override fun initialize(project: Project, variant: Variant) {
+        super.initialize(project, variant)
         checkImpl = project.properties["component.di.checkImpl"] as Boolean? ?: checkImpl
         logger.lifecycle("component.di.checkImpl=$checkImpl")
     }
