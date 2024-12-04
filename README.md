@@ -58,7 +58,7 @@
    
    subprojects {
        repositories {
-           maven { url 'https://jitpack.io' }
+           maven { setUrl("https://jitpack.io") }
        }
    }
    ```
@@ -87,6 +87,12 @@
            false
        }
    }
+   
+   // 你可以在这里配置插件是否校验被 @Component 注解的接口一定要有实现类
+   ext["component.di.checkImpl"] = true
+   // 如果 checkImpl 为 false 时，必须要告诉插件你的自定义代理实现
+   ext["component.di.cpi_proxy_class"] = "xxx/xxx/xxx"
+   ext["component.di.cpi_proxy_method"] = "xxx"
    
    dependencies {
        // 依赖 modifier-component-di-api
