@@ -29,8 +29,3 @@ val COMPONENT_IMPL_DES = COMPONENT_IMPL_TYPE.descriptor
 val COMPONENT_INJECT_TYPE = Type.getType(ComponentInject::class.java)
 
 val COMPONENT_INJECT_DES = COMPONENT_INJECT_TYPE.descriptor
-
-// ============ Utils =============
-
-const val UTILS_INTERNAL_NAME = "com/ysj/lib/bcu/modifier/component/di/api/Utils"
-const val UTILS_DES = "L${UTILS_INTERNAL_NAME};"

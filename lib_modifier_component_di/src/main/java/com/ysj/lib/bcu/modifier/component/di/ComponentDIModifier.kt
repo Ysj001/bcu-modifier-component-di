@@ -58,11 +58,25 @@ class ComponentDIModifier(
     private val findInjectTargetCache = HashMap<String, InjectTarget>()
 
     private var checkImpl = true
+    private var cpiProxyClassName: String? = null
+    private var cpiProxyMethodName: String? = null
 
     override fun initialize(project: Project, variant: Variant) {
         super.initialize(project, variant)
         checkImpl = project.properties["component.di.checkImpl"] as Boolean? ?: checkImpl
+        if (!checkImpl) {
+            cpiProxyClassName = project.properties["component.di.cpi_proxy_class"].let { value ->
+                require(value is String) { "component.di.checkImpl=false but component.di.cpi_proxy_class not string." }
+                value
+            }
+            cpiProxyMethodName = project.properties["component.di.cpi_proxy_method"].let { value ->
+                require(value is String) { "component.di.checkImpl=false but component.di.cpi_proxy_method not string." }
+                value
+            }
+        }
         logger.lifecycle("component.di.checkImpl=$checkImpl")
+        logger.lifecycle("component.di.cpi_proxy_class=$cpiProxyClassName")
+        logger.lifecycle("component.di.cpi_proxy_method=$cpiProxyMethodName")
     }
 
     override fun scan(classNode: ClassNode) {
@@ -135,8 +149,8 @@ class ComponentDIModifier(
                     list.add(LdcInsnNode(componentType))
                     list.add(MethodInsnNode(
                         Opcodes.INVOKESTATIC,
-                        UTILS_INTERNAL_NAME,
-                        "cpiProxy",
+                        requireNotNull(cpiProxyClassName),
+                        requireNotNull(cpiProxyMethodName),
                         "(Ljava/lang/Class;)Ljava/lang/Object;",
                         false
                     ))
