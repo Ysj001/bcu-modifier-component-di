@@ -16,9 +16,11 @@ bcu {
     }
 }
 
-// 演示：如果是发布模式，则编译时校验 component 有实现
-val isReleaseMode = true
-ext["component.di.checkImpl"] = isReleaseMode
+// 你可以在这里配置插件是否校验被 @Component 注解的接口一定要有实现类
+ext["component.di.checkImpl"] = false
+// 如果 checkImpl 为 false 时，必须要告诉插件你的自定义代理实现
+ext["component.di.cpi_proxy_class"] = "com/ysj/demo/component/ComponentProxy"
+ext["component.di.cpi_proxy_method"] = "proxy"
 
 android {
     namespace = "com.ysj.demo.component"
@@ -77,6 +79,7 @@ dependencies {
 
     implementation(project(":lib_modifier_component_di:component-di-api"))
 
+    // component.di.checkImpl=false 时，不给实现也可以编译通过（某些场景如插件化时可以用）
     runtimeOnly(project(":demo1"))
     implementation(project(":demo1:demo1-api"))
 }

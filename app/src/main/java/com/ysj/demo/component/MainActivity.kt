@@ -21,6 +21,7 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
         val vb = ActivityMainBinding.inflate(layoutInflater)
         setContentView(vb.root)
         var num = 0
